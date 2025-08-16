@@ -1,4 +1,4 @@
-<!-- src/components/AppHeader.vue -->
+<!-- src/components/AppHeader.vue (修改版) -->
 <template>
     <header class="app-header">
         <div class="header-content">
@@ -10,15 +10,28 @@
             </div>
 
             <div class="header-section" v-for="section in sections" :key="section.id">
-                <div class="section-trigger" @click="toggleSection(section.id)">
+                <!-- 时间线部分改为直接链接 -->
+                <router-link v-if="section.id === 'timeline'" to="/timeline" class="section-trigger direct-link"
+                    @click="activeSection = null">
+                    <span class="section-title">{{ section.title }}</span>
+                </router-link>
+
+                <div class="section-trigger" @click="toggleSection(section.id)" v-else-if="section.id !== 'glossary'">
                     <span class="section-title">{{ section.title }}</span>
                     <span class="arrow" :class="{ 'rotated': activeSection === section.id }">▼</span>
                 </div>
+
+                <!-- 名词解释部分改为直接链接 -->
+                <router-link v-else to="/glossary" class="section-trigger direct-link" @click="activeSection = null">
+                    <span class="section-title">{{ section.title }}</span>
+                </router-link>
+
                 <transition name="slide">
-                    <div v-show="activeSection === section.id" class="section-content">
+                    <div v-show="activeSection === section.id && section.id !== 'timeline' && section.id !== 'glossary'"
+                        class="section-content">
                         <ul class="section-list">
                             <li v-for="item in section.items" :key="item.id" class="section-item">
-                                <router-link :to="item.link" class="section-link">
+                                <router-link :to="item.link" class="section-link" @click="activeSection = null">
                                     {{ item.name }}
                                 </router-link>
                             </li>
@@ -38,44 +51,78 @@ const activeSection = ref(null)
 const sections = [
     {
         id: 'timeline',
-        title: '时间线',
-        items: [
-            { id: 1, name: '宇宙诞生', link: '/timeline/beginning' },
-            { id: 2, name: '星神降临', link: '/timeline/star-gods' },
-            { id: 3, name: '文明兴起', link: '/timeline/civilizations' },
-            { id: 4, name: '重大事件', link: '/timeline/major-events' }
-        ]
+        title: '时间线'
+        // 不再需要 items 数组，因为改为直接链接
     },
     {
         id: 'factions',
         title: '派系',
         items: [
-            { id: 1, name: '星穹列车', link: '/factions/astRA-trailblazers' },
+            { id: 1, name: '星穹列车', link: '/factions/astral-trailblazers' },
             { id: 2, name: '仙舟联盟', link: '/factions/xianzhou-alliance' },
             { id: 3, name: '星核猎手', link: '/factions/stellaron-hunters' },
-            { id: 4, name: '星际和平公司', link: '/factions/ipc' }
+            { id: 4, name: '星际和平公司', link: '/factions/ipc' },
+            { id: 5, name: '无名客', link: '/factions/nameless' },
+            { id: 6, name: '巡海游侠', link: '/factions/xianzhou-hunters' },
+            { id: 7, name: '混沌医师', link: '/factions/chaos-doctors' },
+            { id: 8, name: '第IX机关', link: '/factions/ninth-ix' },
+            { id: 9, name: '自灭者', link: '/factions/self-annihilators' },
+            { id: 10, name: '丰饶之民', link: '/factions/abundance-folk' },
+            { id: 11, name: '求药使', link: '/factions/medicine-seekers' },
+            { id: 12, name: '反物质军团', link: '/factions/anti-matter-army' },
+            { id: 13, name: '泯灭帮', link: '/factions/merger-gang' },
+            { id: 14, name: '家族', link: '/factions/families' },
+            { id: 15, name: '天才俱乐部', link: '/factions/genius-society' },
+            { id: 16, name: '博识学会', link: '/factions/lore-seeking-society' },
+            { id: 17, name: '源究森林', link: '/factions/origin-forest' },
+            { id: 18, name: '筑城者', link: '/factions/city-builders' },
+            { id: 19, name: '石心十人', link: '/factions/stone-hearts' },
+            { id: 20, name: '虫群', link: '/factions/swarm' },
+            { id: 21, name: '流光忆庭', link: '/factions/memory-garden' },
+            { id: 22, name: '焚化工', link: '/factions/incinerators' },
+            { id: 23, name: '悲悼伶人', link: '/factions/mournful-performers' },
+            { id: 24, name: '假面愚者', link: '/factions/masked-fools' },
+            { id: 25, name: '揽镜人', link: '/factions/mirror-gazers' },
+            { id: 26, name: '纯美骑士团', link: '/factions/purebeast-knights' },
+            { id: 27, name: '虚构史学家', link: '/factions/fiction-historians' },
+            { id: 28, name: '谜语人', link: '/factions/riddle-keepers' },
+            { id: 29, name: '仲裁官', link: '/factions/arbiters' },
+            { id: 30, name: '丹轮寺', link: '/factions/danlun-temple' },
+            { id: 31, name: '天外合唱班', link: '/factions/heavenly-choir' },
+            { id: 32, name: '厄兆先锋', link: '/factions/doom-harbinger' },
+            { id: 33, name: '葬仪知宾', link: '/factions/funeral-ushers' }
         ]
     },
     {
         id: 'stargods',
         title: '星神',
         items: [
-            { id: 1, name: '开拓', link: '/stargods/null' },
-            { id: 2, name: '存护', link: '/stargods/preservation' },
-            { id: 3, name: '虚无', link: '/stargods/destruction' },
-            { id: 4, name: '智识', link: '/stargods/knowledge' },
-            { id: 5, name: '同谐', link: '/stargods/harmony' }
+            { id: 1, name: '阿基维利', link: '/stargods/null' },
+            { id: 2, name: '克里珀', link: '/stargods/preservation' },
+            { id: 3, name: '虚无星神', link: '/stargods/destruction' },
+            { id: 4, name: '博识尊', link: '/stargods/knowledge' },
+            { id: 5, name: '同谐星神', link: '/stargods/harmony' },
+            { id: 6, name: '纳努克', link: '/stargods/destruction-nanook' },
+            { id: 7, name: '岚', link: '/stargods/hunt-lan' },
+            { id: 8, name: '希佩', link: '/stargods/harmony-hype' },
+            { id: 9, name: 'IX', link: '/stargods/void-ix' },
+            { id: 10, name: '药师', link: '/stargods/abundance-medicine' },
+            { id: 11, name: '奥博洛斯', link: '/stargods/glutton-obolos' },
+            { id: 12, name: '阿哈', link: '/stargods/joy-aha' },
+            { id: 13, name: '伊德莉拉', link: '/stargods/beauty-idrilila' },
+            { id: 14, name: '塔伊兹育罗斯', link: '/stargods/propagation-tayzzyroth' },
+            { id: 15, name: '迷思', link: '/stargods/mystery-mis' },
+            { id: 16, name: '互', link: '/stargods/equilibrium-hu' },
+            { id: 17, name: '龙', link: '/stargods/immortality-dragon' },
+            { id: 18, name: '末王', link: '/stargods/doomsday-doctor' },
+            { id: 19, name: '浮离', link: '/stargods/memory-fuli' },
+            { id: 20, name: '太一', link: '/stargods/order-taiyi' }
         ]
     },
     {
         id: 'glossary',
         title: '名词解释',
-        items: [
-            { id: 1, name: '星核', link: '/glossary/stellaron' },
-            { id: 2, name: '以太', link: '/glossary/aether' },
-            { id: 3, name: '星宿', link: '/glossary/constellation' },
-            { id: 4, name: '命途', link: '/glossary/path' }
-        ]
+        items: [] // 不再需要子项
     }
 ]
 
@@ -99,6 +146,16 @@ const toggleSection = (sectionId) => {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* 添加新的样式 */
+.direct-link {
+    text-decoration: none;
+    color: #a0a0c0;
+}
+
+.direct-link:hover {
+    color: #ffffff;
 }
 
 .header-content {
@@ -203,10 +260,13 @@ const toggleSection = (sectionId) => {
 .section-list {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     padding: 15px 0;
     margin: 0;
     list-style: none;
-    gap: 30px;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .section-item {
@@ -220,6 +280,7 @@ const toggleSection = (sectionId) => {
     padding: 8px 12px;
     border-radius: 4px;
     transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .section-link:hover {

@@ -33,20 +33,23 @@ import AppHeader from '@/components/AppHeader.vue'
 
 // 导入图片
 import ahaImage from '@/assets/aha.webp'
-import boshijunImage from '@/assets/boshijun.webp'
-import cunhuImage from '@/assets/cunhu.webp'
+import boshijunImage from '@/assets/boshizun.png'
+import cunhuImage from '@/assets/cunhu.png'
 import fanyuImage from '@/assets/fanyu.webp'
 import fengraoImage from '@/assets/fengrao.webp'
 import fuliImage from '@/assets/fuli.webp'
 import huImage from '@/assets/hu.webp'
-import huimieImage from '@/assets/huimie.webp'
-import longImage from '@/assets/long.jpeg'
+import huimieImage from '@/assets/huimie.png'
+import longImage from '@/assets/long.png'
 import misiImage from '@/assets/misi.webp'
 import tantaoImage from '@/assets/tantao.webp'
-import tongxieImage from '@/assets/tongxie.webp'
-import xunlieImage from '@/assets/xunlie.webp'
+import tongxieImage from '@/assets/tongxie.png'
+import xunlieImage from '@/assets/xunlie.png'
 import xuwuImage from '@/assets/xuwu.webp'
-import zhixuImage from '@/assets/zhixu.webp'
+import zhixuImage from '@/assets/zhixu.png'
+import chunmeiImage from '@/assets/chunmei.png'
+import kaituoImage from '@/assets/kaituo.png'
+import zhongmoImage from '@/assets/zhongmo.png'
 import backgroundImage from '@/assets/background.jpg'
 
 const containerRef = ref(null)
@@ -55,30 +58,24 @@ const isMoving = ref(false)
 
 // 交互图标数据 - 使用固定位置和导入的图片
 const interactiveIcons = reactive([
-    {
-        id: 1,
-        image: ahaImage,
-        alt: 'Universe',
-        page: '/universe',
-        x: 1000,
-        y: 10,
-        imageLoaded: true,
-        fallbackSymbol: '🌌'
-    },
-    { id: 2, image: boshijunImage, alt: 'Boshijun', page: '/stargods/knowledge', x: 40, y: 100, imageLoaded: true, fallbackSymbol: '🚀' },
-    { id: 3, image: cunhuImage, alt: 'Cunhu', page: '/planets', x: 700, y: 0, imageLoaded: true, fallbackSymbol: '🪐' },
-    { id: 4, image: fanyuImage, alt: 'Fanyu', page: '/meteors', x: 200, y: 300, imageLoaded: true, fallbackSymbol: '🌠' },
-    { id: 5, image: fengraoImage, alt: 'Fengrao', page: '/stars', x: 600, y: 350, imageLoaded: true, fallbackSymbol: '⭐' },
-    { id: 6, image: fuliImage, alt: 'Fuli', page: '/earth', x: 300, y: 550, imageLoaded: true, fallbackSymbol: '🌍' },
-    { id: 7, image: huImage, alt: 'Hu', page: '/aliens', x: 1500, y: 700, imageLoaded: true, fallbackSymbol: '👽' },
-    { id: 8, image: huimieImage, alt: 'Huimie', page: '/telescope', x: 700, y: 800, imageLoaded: true, fallbackSymbol: '🔭' },
-    { id: 9, image: longImage, alt: 'Long', page: '/moon', x: 1550, y: 40, imageLoaded: true, fallbackSymbol: '🌙' },
-    { id: 10, image: misiImage, alt: 'Misi', page: '/sun', x: 250, y: 2050, imageLoaded: true, fallbackSymbol: '🌞' },
-    { id: 11, image: tantaoImage, alt: 'Tantao', page: '/comets', x: 375, y: 70, imageLoaded: true, fallbackSymbol: '☄️' },
-    { id: 12, image: tongxieImage, alt: 'Tongxie', page: '/satellites', x: 1400, y: 400, imageLoaded: true, fallbackSymbol: '🛰️' },
-    { id: 13, image: xunlieImage, alt: 'Xunlie', page: '/galaxies', x: 950, y: 250, imageLoaded: true, fallbackSymbol: '🌌' },
-    { id: 14, image: xuwuImage, alt: 'Xuwu', page: '/observatory', x: 400, y: 750, imageLoaded: true, fallbackSymbol: '🔭' },
-    { id: 15, image: zhixuImage, alt: 'Zhixu', page: '/ufo', x: 1100, y: 500, imageLoaded: true, fallbackSymbol: '🛸' }
+    { id: 1, image: ahaImage, alt: 'aha', page: '/stargods/joy-aha', x: 1000, y: 10, imageLoaded: true, fallbackSymbol: '🌌' },
+    { id: 2, image: boshijunImage, alt: 'Boshizun', page: '/stargods/knowledge', x: 40, y: 100, imageLoaded: true, fallbackSymbol: '🚀' },
+    { id: 3, image: cunhuImage, alt: 'Cunhu', page: '/stargods/preservation', x: 700, y: 0, imageLoaded: true, fallbackSymbol: '🪐' },
+    { id: 4, image: fanyuImage, alt: 'Fanyu', page: '/stargods/propagation-tayzzyroth', x: 200, y: 300, imageLoaded: true, fallbackSymbol: '🌠' },
+    { id: 5, image: fengraoImage, alt: 'Fengrao', page: '/stargods/abundance-medicine', x: 600, y: 350, imageLoaded: true, fallbackSymbol: '⭐' },
+    { id: 6, image: fuliImage, alt: 'Fuli', page: '/stargods/memory-fuli', x: 300, y: 550, imageLoaded: true, fallbackSymbol: '🌍' },
+    { id: 7, image: huImage, alt: 'Hu', page: '/stargods/equilibrium-hu', x: 1500, y: 700, imageLoaded: true, fallbackSymbol: '👽' },
+    { id: 8, image: huimieImage, alt: 'Huimie', page: '/stargods/destruction-nanook', x: 700, y: 800, imageLoaded: true, fallbackSymbol: '🔭' },
+    { id: 9, image: longImage, alt: 'Long', page: '/stargods/immortality-dragon', x: 1550, y: 40, imageLoaded: true, fallbackSymbol: '🌙' },
+    { id: 10, image: misiImage, alt: 'Misi', page: '/stargods/mystery-mis', x: 1250, y: 750, imageLoaded: true, fallbackSymbol: '🌞' },
+    { id: 11, image: tantaoImage, alt: 'Tantao', page: '/stargods/glutton-obolos', x: 375, y: 70, imageLoaded: true, fallbackSymbol: '☄️' },
+    { id: 12, image: tongxieImage, alt: 'Tongxie', page: '/stargods/harmony-hype', x: 1400, y: 400, imageLoaded: true, fallbackSymbol: '🛰️' },
+    { id: 13, image: xunlieImage, alt: 'Xunlie', page: '/stargods/hunt-lan', x: 950, y: 250, imageLoaded: true, fallbackSymbol: '🌌' },
+    { id: 14, image: xuwuImage, alt: 'Xuwu', page: '/stargods/void-ix', x: 400, y: 750, imageLoaded: true, fallbackSymbol: '🔭' },
+    { id: 15, image: zhixuImage, alt: 'Zhixu', page: '/stargods/order-taiyi', x: 1100, y: 500, imageLoaded: true, fallbackSymbol: '🛸' },
+    { id: 16, image: chunmeiImage, alt: 'Chunmei', page: '/stargods/beauty-idrilila', x: 900, y: 600, imageLoaded: true, fallbackSymbol: '🌸' },
+    { id: 17, image: kaituoImage, alt: 'Kaituo', page: '/stargods/pioneer', x: 1200, y: 100, imageLoaded: true, fallbackSymbol: '🚀' },
+    { id: 18, image: zhongmoImage, alt: 'zhongmo', page: '/stargods/doomsday-doctor', x: 10, y: 1000, imageLoaded: true, fallbackSymbol: '🌌' }
 ])
 
 // 状态管理

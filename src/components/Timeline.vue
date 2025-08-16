@@ -29,31 +29,158 @@ const route = useRoute()
 const timelineEvents = ref([
     {
         id: 1,
-        section: 'beginning',
-        date: '宇宙诞生之初',
-        title: '虚无创生',
-        description: '在宇宙诞生的瞬间，虚无星神阿基维利撕裂了奇点，为宇宙带来了最初的秩序。'
+        section: 'primordial',
+        date: '历史诞生前',
+        title: '龙祖游弋',
+        description: '龙祖游弋于初启的混沌，"不朽"龙已存在。'
     },
     {
         id: 2,
-        section: 'star-gods',
-        date: '星历元年',
-        title: '星神降临',
-        description: '十二星神相继降临宇宙，各自执掌不同的命途，为宇宙带来多样性。'
+        section: 'ancient',
+        date: '太古时期',
+        title: '古兽游弋',
+        description: '宇宙诞生至星神诞生之间，古兽在宇宙中游弋。'
     },
     {
         id: 3,
-        section: 'civilizations',
-        date: '星历500年',
-        title: '文明兴起',
-        description: '首批智慧文明在星神的引导下开始探索宇宙，建立星际文明。'
+        section: 'amber',
+        date: '琥珀纪前',
+        title: '黄昏战争',
+        description: '人们与古兽之间爆发了大规模战争，史称黄昏战争。'
     },
     {
         id: 4,
+        section: 'amber',
+        date: '琥珀元纪',
+        title: '克里珀登神',
+        description: '克里珀在黄昏战争中登神"存护"，并将古兽杀灭至仅剩"贪饕"奥博洛斯。'
+    },
+    {
+        id: 5,
+        section: 'star-gods',
+        date: '琥珀未知纪',
+        title: '星神诞生',
+        description: '黄昏战争后，"秩序"太一、"均衡"互、"开拓"阿基维利等十二星神相继诞生，具体顺序无从得知。'
+    },
+    {
+        id: 6,
+        section: 'prosperity',
+        date: '琥珀990纪前',
+        title: '第一次繁荣',
+        description: '阿基维利基本贯通宇宙，实现了宇宙的第一次繁荣。'
+    },
+    {
+        id: 7,
+        section: 'company',
+        date: '琥珀1300纪',
+        title: '后援队建立',
+        description: '"公司"前身琥珀王后援队建立，在帮助琥珀王收集材料的同时不断壮大。'
+    },
+    {
+        id: 8,
+        section: 'crisis',
+        date: '琥珀13xx纪',
+        title: '寰宇蝗灾',
+        description: '虫潮出现，"秩序"太一未能压制，开启寰宇蝗灾时期，持续约5纪，影响三分之二银河。'
+    },
+    {
+        id: 9,
+        section: 'crisis',
+        date: '寰宇蝗灾末期',
+        title: '繁育终结',
+        description: '"秩序"与"存护"达成交易后，秩序与贪饕一同消失，秩序命途被"同协"吞并，最终在"存护"干预下，"繁育"被封印。'
+    },
+    {
+        id: 10,
+        section: 'company',
+        date: '约琥珀1388纪',
+        title: '公司成立',
+        description: '后援队改组成立星际和平公司，推出信用点体系作为全宇宙通用货币。'
+    },
+    {
+        id: 11,
+        section: 'conflict',
+        date: '琥珀1400纪',
+        title: '边星贸易战争',
+        description: '因公司资本发展，星际贫富分化加剧，特劳拉-法恩莎与柯拉帕乌引爆边星贸易战争。'
+    },
+    {
+        id: 12,
+        section: 'conflict',
+        date: '琥珀1400纪',
+        title: '第一次机械帝皇战争',
+        description: '德-维恩试图抢占无机世界，引发第一次机械帝皇战争，持续约10个纪后被平定。'
+    },
+    {
+        id: 13,
+        section: 'prosperity',
+        date: '血锦之纪',
+        title: '第二次繁荣',
+        description: '随着联觉信标推广，第二次繁荣来临，史称"血锦之纪"，持续近五百琥珀纪。'
+    },
+    {
+        id: 14,
+        section: 'prosperity',
+        date: '血锦之纪期间',
+        title: '重要星神诞生',
+        description: '"智识"停止思考，"丰饶"药师诞生（存疑），"巡猎"岚出现，"毁灭"纳努克诞生，"开拓"陨落。'
+    },
+    {
+        id: 15,
+        section: 'xianzhou',
+        date: '琥珀2100纪',
+        title: '仙舟启航',
+        description: '九艘仙舟启航寻找丰饶，经历内战、金人叛乱、魔阴身等灾难后看清丰饶本质，成立仙舟联盟。'
+    },
+    {
+        id: 16,
+        section: 'xianzhou',
+        date: '琥珀2100纪',
+        title: '巡猎司命',
+        description: '岚在战场上帮助仙舟，被视作帝弓司命，仙舟获得巡猎的力量。'
+    },
+    {
+        id: 17,
+        section: 'conflict',
+        date: '琥珀2110纪',
+        title: '第二次反有机战争',
+        description: '鲁珀特二世引发第二次反有机帝皇战争，被平定后公司决定对无机生命进行灭绝。'
+    },
+    {
+        id: 18,
+        section: 'company',
+        date: '琥珀2110纪',
+        title: '天才俱乐部介入',
+        description: '因螺丝咕姆加入天才俱乐部，公司改变对无机生命的灭绝政策，转而献好。'
+    },
+    {
+        id: 19,
         section: 'major-events',
-        date: '星历800年',
-        title: '星核危机',
-        description: '星核在多个星球上出现，引发了一系列毁灭性事件，星核猎手组织成立。'
+        date: '琥珀2140纪',
+        title: '星核出现',
+        description: '星核出现，星穹列车开始向受灾地区提供帮助，后来又失去踪迹。'
+    },
+    {
+        id: 20,
+        section: 'conflict',
+        date: '琥珀2147纪',
+        title: '边陲独立战争',
+        description: '囚犯哈努努掀起声势浩大的战火并获得胜利，公司称其为"边陲战争"，阿斯德纳人称其为"独立战争"。'
+    },
+
+    {
+        id: 22,
+        section: 'major-events',
+        date: '琥珀2157纪',
+        title: '星穹列车再启航',
+        description: '星穹列车再次发车，琥珀王瞥视开拓者后开启新纪元。'
+    },
+    {
+        id: 23,
+        section: 'present',
+        date: '琥珀2158纪',
+        title: '星际和平指南发布',
+        description: '《星际和平指南》第一版发布，现世流传。'
     }
 ])
 
